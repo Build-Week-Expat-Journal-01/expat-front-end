@@ -10,18 +10,10 @@ function App() {
 
   return (
     <>
-        <h1>Welcome to expat</h1>
-        <h3>returning user?</h3>
-        <button>Login</button>
-        <h3>new user?</h3>
-        <button>Register</button>
       <Router>
         <Route to='/login' component={Login}/>
         <Route to='/register' component={Register}/>
         
-
-
-
       </Router>
     </>
   );
