@@ -16,22 +16,37 @@ const Login = () => {
         password: "",
     });
 
+    const [post, setPost] = useState([]);
+
     const [errors, setErrors] = useState({
-        name:"",
         email: "",
         password: ""
     })
+
+    useEffect(() => {
+        formSchema.isValid(formData).then(valid => {
+            setButtonDisabled(!valid)
+        })
+    }, [formData])
 
     const inputChange = e => {
         e.persist();
         const newFormData = {
             ...formData,
-            [e.target.name]:
-                 e.target.value
+            [e.target.name]: e.target.value
         };
         
         validateChange(e);
         setFormData(newFormData);
+    }
+
+        const formSubmit = e => {
+        e.preventDefault();
+
+        setFormData({
+            email:"",
+            password: ""
+        })
     }
 
     const validateChange = e => {
@@ -52,9 +67,7 @@ const Login = () => {
             })
     }
 
-    const formSubmit = () => {
 
-    }
 
 
     return(
@@ -70,7 +83,7 @@ const Login = () => {
                 <label htmlFor="password">
                     Password: 
                     <br/>
-                    <input type="password" name="email" onChange={inputChange} value={formData.password}/>
+                    <input type="password" name="password" onChange={inputChange} value={formData.password}/>
                     <br/>
                 </label>
                 <button type="submit" disabled={buttonDisabled}>Submit</button>
