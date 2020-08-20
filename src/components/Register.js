@@ -1,5 +1,12 @@
 import React from 'react'
+import * as yup from 'yup';
 import { useState, useEffect} from 'react';
+
+const formSchema = yup.object().shape({
+    name:yup.string().min(2).require(),
+    email: yup.string().email("Must include valid email").required("Email is required for sign up."),
+    password: yup.string().required("Must include password")
+})
 
 const Register = () => {
 
