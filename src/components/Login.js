@@ -1,25 +1,30 @@
 import React from 'react';
 import * as yup from 'yup';
 import { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom'
+import axios from 'axios';
+
 
 const formSchema = yup.object().shape({
-    email: yup.string().email("Must include valid email").required("Email is required for sign up."),
+    username: yup.string().required("Username is required for sign up."),
     password: yup.string().required("Must include password")
 })
 
 const Login = () => {
 
+    const {push} = useHistory()
+
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
     const [formData, setFormData] = useState({
-        email: "",
+        username: "",
         password: "",
     });
 
     const [post, setPost] = useState([]);
 
     const [errors, setErrors] = useState({
-        email: "",
+        username: "",
         password: ""
     })
 
@@ -43,8 +48,13 @@ const Login = () => {
         const formSubmit = e => {
         e.preventDefault();
 
+        axios
+            .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/login', formData)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+
         setFormData({
-            email:"",
+            username:"",
             password: ""
         })
     }
@@ -75,9 +85,9 @@ const Login = () => {
             <h1>Login</h1>
             <form onSubmit={formSubmit}>
                 <label htmlFor="email">
-                    Email: 
+                    Username: 
                     <br/>
-                    <input type="email" name="email" onChange={inputChange} value={formData.email}/>
+                    <input type="text" name="username" onChange={inputChange} value={formData.username}/>
                 </label>
                 <br/>
                 <label htmlFor="password">

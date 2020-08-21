@@ -1,46 +1,61 @@
 import React from 'react'
 import * as yup from 'yup';
 import { useState, useEffect} from 'react';
+import axios from 'axios'
 
 const formSchema = yup.object().shape({
-    name:yup.string().min(2).require(),
-    email: yup.string().email("Must include valid email").required("Email is required for sign up."),
+    username:yup.string().min(2).required('name'),
     password: yup.string().required("Must include password")
 })
 
 const Register = () => {
 
+
+
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
+        username: "",
         password: "",
     })
+
+    console.log(formData)
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]:e.target.value
+        })
+
+    }
+
+    const submitReg = (e) => {
+        e.preventDefault()
+
+        axios   
+        .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/register', formData)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+
+    }
 
     return(
         <div>
             <h1>Register</h1>
-            <label htmlFor="name">
+            <label htmlFor="username">
                     Name: 
                     <br/>
-                    <input type="text"/>
-                    <br/>
-                </label>
-                <label htmlFor="email">
-                    Email: 
-                    <br/>
-                    <input type="email"/>
+                    <input type="text" name='username' value={formData.name} onChange={handleChange}/>
                     <br/>
                 </label>
                 <label htmlFor="password">
                     Password: 
                     <br/>
-                    <input type="password"/>
+                    <input type="password" name='password' value={formData.password} onChange={handleChange}/>
                     <br/>
                 </label>
                 <br/>
-                <button type="submit" disabled={buttonDisabled}>Submit</button>
+                <button onClick={submitReg} >Submit</button>
         </div>
     )
 }
