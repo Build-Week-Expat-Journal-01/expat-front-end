@@ -50,13 +50,10 @@ const Login = () => {
 
         axios
             .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/login', formData)
-            .then(res => console.log(res))
+            .then(res => localStorage.setItem('token',res.data.token))
             .catch(err => console.log(err))
 
-        setFormData({
-            username:"",
-            password: ""
-        })
+            push('/userDashboard')
     }
 
     const validateChange = e => {
