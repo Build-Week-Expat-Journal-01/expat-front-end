@@ -1,8 +1,10 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom'
 // import AxiosWithAuth from '../utils/AxiosWithAuth'
 
 const AddStory = () => {
+    const {push} = useHistory()
 
     //Shaq: useState for story, haven't looked for whats need for the backend hopefully this is close.
     const {storyData, setStoryData} = useState({
@@ -19,9 +21,13 @@ const AddStory = () => {
 
     }
 
+    const cancelEdit = () => {
+        push('/userDashboard')
+    }
 
     return(
         <>
+            <button onClick={cancelEdit}>cancel </button>
             <form onSubmit={formSubmit}>
                 <label htmlFor="uploadPic">
                     Please input image location: 
