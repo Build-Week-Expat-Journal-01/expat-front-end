@@ -1,6 +1,7 @@
 import React from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import axios from 'axios'
+import UserStoryCard from './UserStoryCard'
 
 const UserDashboard = () => {
 
@@ -8,6 +9,8 @@ const UserDashboard = () => {
 
     return(
         <>
+        <h1>User DAAAAAAASH</h1>
+        <UserStoryCard/>
         </>
     )
 }
