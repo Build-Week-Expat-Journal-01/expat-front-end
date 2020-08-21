@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Route exact path='/' component={Login}/>
         <Route exact path='/' component={Register}/>
-        <Route path='/addStory' component={AddStory}/>
+        <PrivateRoute path='/addStory' component={AddStory}/>
         <PrivateRoute exact path='/userDashboard' component={UserDashboard}></PrivateRoute>
         
       </Router>
