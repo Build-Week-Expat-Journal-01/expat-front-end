@@ -43,7 +43,7 @@ const Register = () => {
         <div>
             <h1>Register</h1>
             <label htmlFor="username">
-                    Name: 
+                    username: 
                     <br/>
                     <input type="text" name='username' value={formData.name} onChange={handleChange}/>
                     <br/>
