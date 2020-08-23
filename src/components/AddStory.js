@@ -1,9 +1,11 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom'
+import {addPost} from '../actions'
+import {connect} from 'react-redux'
 // import AxiosWithAuth from '../utils/AxiosWithAuth'
 
-const AddStory = () => {
+const AddStory = (props) => {
     const {push} = useHistory()
 
     //Shaq: useState for story, haven't looked for whats need for the backend hopefully this is close.
@@ -17,8 +19,10 @@ const AddStory = () => {
 
     }
 
-    const formSubmit =()=>{
-
+    const formSubmit =(e)=>{
+        console.log('formSubmit in addstory')
+        e.preventDefault();
+        props.addPost()
     }
 
     const cancelEdit = () => {
@@ -42,9 +46,16 @@ const AddStory = () => {
                     <br/>
                     <textarea id="caption" placeholder="Whats on your mind?"/>
                 </label>
+                <button>Save</button>
             </form>
         </>
     )
 }
 
-export default AddStory
+const mapStateToProps = state => {
+    return{
+        posts:state.posts
+    }
+}
+
+export default connect(mapStateToProps,{addPost})(AddStory)
