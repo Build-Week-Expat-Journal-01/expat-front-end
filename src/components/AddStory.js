@@ -6,15 +6,14 @@ import {connect} from 'react-redux'
 // import AxiosWithAuth from '../utils/AxiosWithAuth'
 
 const AddStory = (props) => {
-    const {push} = useHistory()
+    const {push,goBack} = useHistory()
 
     //Shaq: useState for story, haven't looked for whats need for the backend hopefully this is close.
     const [storyData, setStoryData] = useState({
-        postID: Date.now(), //this would just be a number that automatically goes up 1 for each unique story
+        id: Date.now(), //this would just be a number that automatically goes up 1 for each unique story
         postText: "", //i guess this is the actual text of a story
         postImgURL: "", //this is the input for the location of the image
     })
-    console.log('storydata',storyData)
 
     const inputChange =(e)=>{
         setStoryData({
@@ -28,11 +27,11 @@ const AddStory = (props) => {
         console.log('formSubmit in addstory')
         e.preventDefault();
         props.addPost(storyData)
-        push('/userDashboard')
+        goBack()
     }
 
     const cancelEdit = () => {
-        push('/userDashboard')
+        goBack()
     }
 
     return(
@@ -43,7 +42,7 @@ const AddStory = (props) => {
                     Please input image location: 
                     <br/>
                     <input type="text" name="postImgURL" onChange={inputChange}/>
-                    <button onClick="">UPLOAD</button>(This is a required field)
+                    {/* <button onClick="">UPLOAD</button>(This is a required field) */}
                     <br/>
                 </label>
                     <br/>

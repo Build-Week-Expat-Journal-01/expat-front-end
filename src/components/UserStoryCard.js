@@ -1,34 +1,38 @@
-import React from 'react'
-import {useHistory} from 'react-router-dom'
-
-
-
-
+import React,{useEffect} from 'react'
+import {useHistory,useParams} from 'react-router-dom'
+import { connect } from 'react-redux'
+import {deletePost} from '../actions/index'
 
 const UserStoryCard = (props) => {
 
-    const {push} = useHistory()
+    const params = useParams();
+    const {push} = useHistory();
 
-    const editStory = () => {
-        push('/addStory')
+    console.log('params',params.id)
+
+    const editPost=() => {
+        push(`addStory/${params.id}`)
     }
 
-    const deleteStory =() => {
 
-    }
 
     return(
         <div style={{border:'1px solid black'}}>
             <div>
-            <img src={props.post.img} alt='alaska'/>
+            <img src={props.post.postImgURL} alt='alaska'/>
             </div>
-            <h3>{props.post.story}</h3>
-            <button onClick={editStory}>edit story</button>
-            <button onClick={deleteStory}>Delete</button>
+            <h3>{props.post.postText}</h3>
+            <button onClick={editPost}>edit story</button>
+            <button onClick={deletePost}>Delete</button>
         </div>
     )
 }
 
+const mapStateToProps = state => {
+    return{
+        posts:state.posts
+    }
 
+}
 
-export default UserStoryCard
+export default connect(mapStateToProps,{deletePost})(UserStoryCard)
