@@ -10,9 +10,9 @@ const UserDashboard = (props) => {
 
     const {push} = useHistory()
 
-    // useEffect(()=>{
-    //     props.fetchData()
-    // },[])
+    useEffect(()=>{
+        props.fetchData()
+    },[])
 
     const logout=() => {
         localStorage.clear()
@@ -28,9 +28,8 @@ const UserDashboard = (props) => {
         <button onClick={logout}>Logout</button>
         <h1>User DAAAAAAASH</h1>
         <button onClick={addStory}>Add Story</button>
-        {props.posts.map(post => 
-        <UserStoryCard key={post.id} post={post}/>
-        )}
+        <UserStoryCard/>
+        
         </>
     )
 }
