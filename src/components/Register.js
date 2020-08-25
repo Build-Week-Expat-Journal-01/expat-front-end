@@ -1,7 +1,7 @@
 import React from 'react'
 import * as yup from 'yup';
 import { useState, useEffect} from 'react';
-import { Alert } from 'reactstrap';
+import { Alert, Container, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios'
 
 const formSchema = yup.object().shape({
@@ -75,23 +75,35 @@ const Register = () => {
     }
 
     return(
-        <div>
-            <h1>Register</h1>
-            <label htmlFor="username">
-                    username: 
-                    <br/>
-                    <input type="text" name='username' value={formData.name} onChange={handleChange}/>
-                    <br/>
-                </label>
-                <label htmlFor="password">
-                    Password: 
-                    <br/>
-                    <input type="password" name='password' value={formData.password} onChange={handleChange}/>
-                    <br/>
-                </label>
-                <br/>
-                <button onClick={submitReg} disabled={buttonDisabled}>Submit</button>
-        </div>
+        <Container>
+            <Row>
+            <Col sm="12" lg={{ size: 6, offset: 3 }}>
+                <div>
+                    <FormGroup>
+                            <h1>Register</h1>
+                    <Label htmlFor="username">
+                            Username: 
+                            <br/>
+                            <Input type="text" name='username' value={formData.name} onChange={handleChange}/>
+                            <br/>
+                        </Label>
+                        <br/>
+                        <Label htmlFor="password">
+                            Password: 
+                            <br/>
+                            <Input type="password" name='password' value={formData.password} onChange={handleChange}/>
+                            <br/>
+                        </Label>
+                        <br/>
+                    <Button onClick={submitReg} disabled={buttonDisabled}>Submit</Button>
+                    </FormGroup>
+
+            </div>  
+            </Col>
+                
+            </Row>
+        </Container>
+
     )
 }
 
