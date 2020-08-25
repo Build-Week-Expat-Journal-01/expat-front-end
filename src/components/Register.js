@@ -1,6 +1,7 @@
 import React from 'react'
 import * as yup from 'yup';
 import { useState, useEffect} from 'react';
+import { Alert } from 'reactstrap';
 import axios from 'axios'
 
 const formSchema = yup.object().shape({
@@ -19,14 +20,45 @@ const Register = () => {
         password: "",
     })
 
+    const [errors, setErrors] = useState({
+        username: "",
+        password: ""
+    })
+
+    useEffect(() => {
+        formSchema.isValid(formData).then(valid => {
+            setButtonDisabled(!valid)
+        })
+    }, [formData])
+
     console.log(formData)
 
-    const handleChange = (e) => {
-        setFormData({
+    const handleChange = e => {
+        e.persist();
+        const newFormData = {
             ...formData,
-            [e.target.name]:e.target.value
-        })
-
+            [e.target.name]: e.target.value
+        };
+        
+        validateChange(e);
+        setFormData(newFormData);
+    }
+    const validateChange = e => {
+        yup
+            .reach(formSchema, e.target.name)
+            .validate(e.target.value)
+            .then(valid => {
+                setErrors({
+                    ...errors,
+                    [e.target.name]: ""
+                })
+            })
+            .catch(err => {
+                setErrors({
+                    ...errors,
+                    [e.target.name]: err.errors[0]
+                })
+            })
     }
 
     const submitReg = (e) => {
@@ -34,7 +66,10 @@ const Register = () => {
 
         axios   
         .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/register', formData)
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            
+        })
         .catch(err => console.log(err))
 
     }
@@ -55,7 +90,7 @@ const Register = () => {
                     <br/>
                 </label>
                 <br/>
-                <button onClick={submitReg} >Submit</button>
+                <button onClick={submitReg} disabled={buttonDisabled}>Submit</button>
         </div>
     )
 }
