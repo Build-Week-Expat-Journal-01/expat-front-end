@@ -10,16 +10,15 @@ const AddStory = (props) => {
 
     const [storyData, setStoryData] = useState({
         content: "test content",
-        id: Date.now(),
+        teaser: "test teaser",
+        title: "test title 2",        
         photos:[
             {
-                id:Date.now(),
                 image_url:'testerInInputForm',
                 desc:'TesterInInputForm'
             }
-        ],
-        teaser: "test teaser",
-        title: "test title 2"
+        ]
+
     })
 
     console.log('storyData', storyData)

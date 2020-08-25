@@ -18,7 +18,7 @@ const UserStoryCard = (props) => {
         <>
 
             
-            {props.posts.map(res =>
+            {props.posts.map(res => 
                     <div style={{border:'1px solid black'}}>
                     {res.photos.map(pic => 
                     <img src={pic.image_url} key={pic.id} alt={pic.desc}/>   
