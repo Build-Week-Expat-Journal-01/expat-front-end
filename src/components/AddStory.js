@@ -8,23 +8,46 @@ import {connect} from 'react-redux'
 const AddStory = (props) => {
     const {push,goBack} = useHistory()
 
-    //Shaq: useState for story, haven't looked for whats need for the backend hopefully this is close.
     const [storyData, setStoryData] = useState({
-        id: Date.now(), //this would just be a number that automatically goes up 1 for each unique story
-        postText: "", //i guess this is the actual text of a story
-        postImgURL: "", //this is the input for the location of the image
+        content: "test content",
+        id: Date.now(),
+        photos:[
+            {
+                id:Date.now(),
+                image_url:'testerInInputForm',
+                desc:'TesterInInputForm'
+            }
+        ],
+        teaser: "test teaser",
+        title: "test title 2"
     })
+
+    console.log('storyData', storyData)
 
     const inputChange =(e)=>{
         setStoryData({
             ...storyData,
             [e.target.name]: e.target.value
         })
+    }
 
+    const photoChange = (e) => {
+        setStoryData({
+            ...storyData,
+            photos:[ ...storyData.photos,
+               { [e.target.name]: e.target.value}
+            ]
+        })
+    }
+
+    const altChange = (e) => {
+        setStoryData({
+            ...storyData,
+           photos:[storyData.photos.filter(pic => console.log('pic in filter',pic))]
+        })
     }
 
     const formSubmit =(e)=>{
-        console.log('formSubmit in addstory')
         e.preventDefault();
         props.addPost(storyData)
         goBack()
@@ -41,15 +64,27 @@ const AddStory = (props) => {
                 <label htmlFor="uploadPic">
                     Please input image location: 
                     <br/>
-                    <input type="text" name="postImgURL" onChange={inputChange}/>
+                    <input type="text" name="image_url" onChange={photoChange}/>
                     {/* <button onClick="">UPLOAD</button>(This is a required field) */}
                     <br/>
                 </label>
                     <br/>
-                <label htmlFor="postText">
-                    Caption?
+                    <label htmlFor="postText">
+                    Alt
                     <br/>
-                    <textarea id="caption" name='postText' placeholder="Whats on your mind?" onChange={inputChange}/>
+                    <input id="alt" name='desc' placeholder="alt img" onChange={altChange}/>
+                </label>
+                <label htmlFor="postText">
+                <br/>
+                    Title
+                    <br/>
+                    <textarea id="title" name='title' placeholder="Title" onChange={inputChange}/>
+                </label>
+                <label htmlFor="postText">
+                <br/>
+                    Caption
+                    <br/>
+                    <textarea id="caption" name='content' placeholder="Whats on your mind?" onChange={inputChange}/>
                 </label>
                 <button>Save</button>
             </form>

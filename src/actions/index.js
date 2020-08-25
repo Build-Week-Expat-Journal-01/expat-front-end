@@ -15,19 +15,18 @@ export const fetchData = () => dispatch => {
     dispatch({type:FETCHING_START})
     console.log('fetch in action')
     AxiosWithAuth()
-        .get('readStories')
-        .then(res=> console.log("fetch in action res", res),
-        dispatch({ type:FETCHING_SUCCESS}))
+        .get('api/stories')
+        .then(res=>dispatch({ type:FETCHING_SUCCESS, payload:res.data.stories}))
         .catch(err=> console.log(err),
         dispatch({ type:FETCHING_FAIL}))
 }
 
 export const addPost = newPost => {
-        console.log('addPost in action',newPost.postText) 
+        console.log('addPost in action',newPost) 
         AxiosWithAuth()
-            .post('addStory',newPost.postText)
-            .then(res => console.log('res', res))
-            .catch(err => console.log('err', err))
+            .post('api/stories',newPost)
+            .then(res => console.log('post res in actions', res))
+            .catch(err => console.log('err in action add-', err))
     return{
 
         type:ADD_POST,

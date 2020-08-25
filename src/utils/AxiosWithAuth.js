@@ -7,7 +7,7 @@ const AxiosWithAuth = () => {
         axios.create({
             baseURL:('https://build-week-expat-journal-1.herokuapp.com/'),
             headers:{
-                Authorization:token
+                Authorization:`Bearer ${token}`
             }
         })
     )
