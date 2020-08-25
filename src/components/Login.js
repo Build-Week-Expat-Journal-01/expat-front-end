@@ -2,6 +2,7 @@ import React from 'react';
 import * as yup from 'yup';
 import { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom'
+import {Container, Row, Col, FormGroup, Label, Input, Button} from 'reactstrap';
 import axios from 'axios';
 
 
@@ -78,24 +79,33 @@ const Login = () => {
 
 
     return(
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={formSubmit}>
-                <label htmlFor="email">
-                    Username: 
+        <Container>
+            <Row>
+                <Col sm="12" lg={{ size: 6, offset: 3 }}>
+                <div>
+                    <h1>Login</h1>
+                    <FormGroup onSubmit={formSubmit}>
+                    <Label htmlFor="username">
+                        Username: 
+                        <br/>
+                    <Input type="text" name="username" onChange={inputChange} value={formData.username}/>
+                    </Label>
                     <br/>
-                    <input type="text" name="username" onChange={inputChange} value={formData.username}/>
-                </label>
-                <br/>
-                <label htmlFor="password">
-                    Password: 
+                    <Label htmlFor="password">
+                        Password: 
+                        <br/>
+                        <Input type="password" name="password" onChange={inputChange} value={formData.password}/>
+                        <br/>
+                    </Label>
                     <br/>
-                    <input type="password" name="password" onChange={inputChange} value={formData.password}/>
-                    <br/>
-                </label>
-                <button type="submit" disabled={buttonDisabled}>Submit</button>
-            </form>
-        </div>
+                    <Button type="submit" disabled={buttonDisabled}>Submit</Button>
+                    </FormGroup>
+                </div> 
+                </Col>
+ 
+            </Row>
+        </Container>
+ 
     )
 }
 
