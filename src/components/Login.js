@@ -43,6 +43,7 @@ const Login = () => {
         };
         
         validateChange(e);
+        console.log(newFormData);
         setFormData(newFormData);
     }
 
@@ -81,10 +82,10 @@ const Login = () => {
     return(
         <Container>
             <Row>
-                <Col sm="12" lg={{ size: 6, offset: 3 }}>
-                <div>
+                <Col sm="12" lg={{ size: 6, offset: 5 }}>
+                <div className="form-w-bckgimg">
                     <h1>Login</h1>
-                    <FormGroup onSubmit={formSubmit}>
+                    <FormGroup>
                     <Label htmlFor="username">
                         Username: 
                         <br/>
@@ -98,7 +99,7 @@ const Login = () => {
                         <br/>
                     </Label>
                     <br/>
-                    <Button type="submit" disabled={buttonDisabled}>Submit</Button>
+                    <Button type="submit" onClick={formSubmit} disabled={buttonDisabled}>Submit</Button>
                     </FormGroup>
                 </div> 
                 </Col>

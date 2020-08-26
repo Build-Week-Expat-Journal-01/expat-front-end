@@ -77,8 +77,8 @@ const Register = () => {
     return(
         <Container>
             <Row>
-            <Col sm="12" lg={{ size: 6, offset: 3 }}>
-                <div>
+            <Col sm="12" lg={{ size: 6, offset: 5 }}>
+                <div className="form-w-bckgimg">
                     <FormGroup>
                             <h1>Register</h1>
                     <Label htmlFor="username">
