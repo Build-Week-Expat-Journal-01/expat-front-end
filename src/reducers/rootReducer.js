@@ -68,12 +68,16 @@ export const rootReducer = ( state = initialState, action) => {
             }
 
         case EDIT_POST:
+            console.log('action.payload - EDIT_POST reducer', action.payload)
             return{
                 ...state
             }
 
         case DELETE_POST:
-            return{...state}
+            console.log('action.payload - DELETE_POST reducer', action.payload)
+            return{
+                ...state
+            }
          
     }
 
