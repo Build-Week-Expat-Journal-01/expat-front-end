@@ -34,10 +34,28 @@ export const addPost = newPost => {
     }
 }
 
-export const editPost=() => {
-    console.log('editPost in action')
+export const editPost = (id,updated) => {
+    console.log('editing in actions editPost:', id, updated)
+    AxiosWithAuth()
+        .put(`api/stories/${id}`)
+        .then(res => console.log('post res in actions', res))
+        .catch(err => console.log('err in action add-', err))
+    return{
+        type:EDIT_POST,
+        payload:updated
+    }
 }
 
-export const deletePost = () => {
-    console.log('delete in action')
+
+export const deletePost = id => {
+    console.log('delete in action deletePost',id)
+    AxiosWithAuth()
+        .delete(`api/stories/${id}`)
+        .then(res => console.log('post res in actions', res))
+        .catch(err => console.log('err in action add-', err))
+
+    return{
+        type:DELETE_POST,
+        payload:id
+    }
 }

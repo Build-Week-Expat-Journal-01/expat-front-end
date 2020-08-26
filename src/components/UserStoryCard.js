@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import {useHistory,useParams} from 'react-router-dom'
 import { connect } from 'react-redux'
-import {deletePost} from '../actions/index'
+import {deletePost, editPost} from '../actions/index'
 
 const UserStoryCard = (props) => {
 
@@ -9,10 +9,19 @@ const UserStoryCard = (props) => {
     const {push} = useHistory();
 
     // console.log('params',props.posts.id)
-
-    const editPost=() => {
-        push(`addStory/${props.posts.id}`)
+                    // id post obj,
+    const editFunc=(e) => {
+        props.editPost()
+        console.log('editfunc in userstoryCard', e)
+        push(`addStory/${e.target.id}`)
     }
+    // id in param
+    const deleteFunc = (e) => {
+        console.log('deletefunc in userstorycard',e)
+        props.deletePost()
+
+    }
+
 
     return(
         <>
@@ -25,8 +34,8 @@ const UserStoryCard = (props) => {
                 )}
                         <h2>{res.title}</h2>
                         <h3>{res.content}</h3>
-                        <button onClick={editPost}>edit story</button>
-                        <button onClick={deletePost}>Delete</button>        
+                        <button onClick={editFunc}>edit story</button>
+                        <button onClick={deleteFunc}>Delete</button>        
                     </div>        
                 )}
             
@@ -41,4 +50,4 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps,{deletePost})(UserStoryCard)
+export default connect(mapStateToProps,{editPost ,deletePost})(UserStoryCard)
