@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom'
 import {addPost} from '../actions'
 import {connect} from 'react-redux'
+import {Container, Row, Col, Button, FormGroup, Label, Input, FormText} from 'reactstrap';
 // import AxiosWithAuth from '../utils/AxiosWithAuth'
 
 const AddStory = (props) => {
@@ -57,37 +58,58 @@ const AddStory = (props) => {
     }
 
     return(
-        <>
-            <button onClick={cancelEdit}>cancel </button>
-            <form onSubmit={formSubmit}>
-                <label htmlFor="uploadPic">
-                    Please input image location: 
-                    <br/>
-                    <input type="text" name="image_url" onChange={photoChange}/>
+        <Container>
+            <div className="form-w-bckgimg">
+                <Row>
+                    <Col lg="12">
+                        <label htmlFor="postText">
+                            <br/>
+                            Title
+                            <br/>
+                            <textarea id="title" name='title' placeholder="Title" onChange={inputChange}/>
+                        </label>
+                    </Col>
+
+
+                    <Col lg="12">
+                                <br/>
+                            <label htmlFor="postText">
+                                <br/>
+                                Caption
+                                <br/>
+                            <textarea id="caption" name='content' placeholder="Whats on your mind?" onChange={inputChange}/>
+                            </label>
+                    </Col>
+                    
+
+                    <Col lg="12">
+                        <label htmlFor="postText">
+                             Alt
+                            <br/>
+                            <Input id="alt" name='desc' placeholder="alt img" onChange={altChange}/>
+                        </label>
+                    </Col>
+                    
+                    <Col lg="12">
+                    
+                        <FormGroup onSubmit={formSubmit}>
+                            <label htmlFor="uploadPic">
+                                Please input image location: 
+                            <br/>
+                            <Input type="text" name="image_url" onChange={photoChange}/>
                     {/* <button onClick="">UPLOAD</button>(This is a required field) */}
-                    <br/>
-                </label>
-                    <br/>
-                    <label htmlFor="postText">
-                    Alt
-                    <br/>
-                    <input id="alt" name='desc' placeholder="alt img" onChange={altChange}/>
-                </label>
-                <label htmlFor="postText">
-                <br/>
-                    Title
-                    <br/>
-                    <textarea id="title" name='title' placeholder="Title" onChange={inputChange}/>
-                </label>
-                <label htmlFor="postText">
-                <br/>
-                    Caption
-                    <br/>
-                    <textarea id="caption" name='content' placeholder="Whats on your mind?" onChange={inputChange}/>
-                </label>
-                <button>Save</button>
-            </form>
-        </>
+                            <br/>
+                            </label>    
+                    <Button color="danger" size="lg" block onClick={cancelEdit}>cancel </Button>
+                    <Button color="info" size="lg" block>Save</Button>
+                        </FormGroup>
+                    </Col>
+                
+                </Row>
+            </div>
+            
+            
+        </Container>
     )
 }
 
@@ -98,3 +120,8 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps,{addPost})(AddStory)
+
+
+
+
+                                
