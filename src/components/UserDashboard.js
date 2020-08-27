@@ -37,7 +37,7 @@ const UserDashboard = (props) => {
                     <Button color="danger" onClick={logout}>Logout</Button>
                 </Col>
                 </Row>
-                <h1>User DAAAAAAASH</h1>
+                <h1>User Dashboard</h1>
                 <Button color="info" onClick={addStory}>Add Story</Button>
                 <UserStoryCard/> 
             </div>

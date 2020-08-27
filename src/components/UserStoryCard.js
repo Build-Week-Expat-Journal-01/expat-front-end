@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import {useHistory,useParams} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {deletePost, editPost} from '../actions/index'
+import {Container, Row, Col, Button} from 'reactstrap';
 
 const UserStoryCard = (props) => {
 
@@ -24,22 +25,27 @@ const UserStoryCard = (props) => {
 
 
     return(
-        <>
-
-            
-            {props.posts.map(res => 
+        <Container>
+            <Row>
+                <Col>
+               {props.posts.map(res => 
                     <div style={{border:'1px solid black'}}>
                     {res.photos.map(pic => 
                     <img src={pic.image_url} key={pic.id} alt={pic.desc}/>   
                 )}
                         <h2>{res.title}</h2>
                         <h3>{res.content}</h3>
-                        <button onClick={editFunc}>edit story</button>
-                        <button onClick={deleteFunc}>Delete</button>        
+                        <Button onClick={editFunc}>edit story</Button>
+                        <Button color="danger" onClick={deleteFunc}>Delete</Button>        
                     </div>        
-                )}
+                )} 
+                </Col>
+            </Row>
+
             
-        </>
+            
+            
+        </Container>
     )
 }
 
