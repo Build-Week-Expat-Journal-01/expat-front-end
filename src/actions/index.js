@@ -22,7 +22,7 @@ export const fetchData = () => dispatch => {
 }
 
 export const addPost = newPost => {
-        console.log('addPost in action',newPost) 
+        // console.log('addPost in action',newPost) 
         AxiosWithAuth()
             .post('api/stories',newPost)
             .then(res => console.log('post res in actions', res))
@@ -35,9 +35,9 @@ export const addPost = newPost => {
 }
 
 export const editPost = (id,updated) => {
-    console.log('editing in actions editPost:', id, updated)
+    console.log('editing in actions editPost:id and updated', id, updated)
     AxiosWithAuth()
-        .put(`api/stories/${id}`)
+        .put(`api/stories/${id}`,updated)
         .then(res => console.log('post res in actions', res))
         .catch(err => console.log('err in action add-', err))
     return{
@@ -48,7 +48,7 @@ export const editPost = (id,updated) => {
 
 
 export const deletePost = id => {
-    console.log('delete in action deletePost',id)
+    // console.log('delete in action deletePost',id)
     AxiosWithAuth()
         .delete(`api/stories/${id}`)
         .then(res => console.log('post res in actions', res))

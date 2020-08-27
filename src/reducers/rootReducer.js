@@ -42,7 +42,7 @@ export const rootReducer = ( state = initialState, action) => {
             }
         
         case FETCHING_SUCCESS:
-            console.log('fetchingSucces action.payload', action.payload)
+            // console.log('fetchingSucces action.payload', action.payload)
             return{
                 ...state,
                 posts:action.payload,
@@ -58,8 +58,8 @@ export const rootReducer = ( state = initialState, action) => {
             }
 
         case ADD_POST:
-            console.log("ADDPost in reducer")
-            console.log("payload",action.payload)
+            // console.log("ADDPost in reducer")
+            // console.log("payload",action.payload)
 
             return {...state,
             posts:[...state.posts,
@@ -74,9 +74,11 @@ export const rootReducer = ( state = initialState, action) => {
             }
 
         case DELETE_POST:
-            console.log('action.payload - DELETE_POST reducer', action.payload)
+            // console.log('action.payload - DELETE_POST reducer', action.payload)
+            // console.log('looking for state id', state.posts)
             return{
-                ...state
+                ...state,
+                posts:[...state.posts.filter(post => post.id != action.payload )]
             }
          
     }
