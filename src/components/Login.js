@@ -14,16 +14,12 @@ const formSchema = yup.object().shape({
 const Login = () => {
 
     const {push} = useHistory()
-
     const [buttonDisabled, setButtonDisabled] = useState(true);
-
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     });
-
     const [post, setPost] = useState([]);
-
     const [errors, setErrors] = useState({
         username: "",
         password: ""
@@ -48,14 +44,11 @@ const Login = () => {
     }
 
         const formSubmit = e => {
-        e.preventDefault();
-
-        axios
-            .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/login', formData)
-            .then(res => localStorage.setItem('token',res.data.token),push('/userDashboard'))
-            .catch(err => console.log(err))
-
-            
+            e.preventDefault();
+            axios
+                .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/login', formData)
+                .then(res => localStorage.setItem('token',res.data.token),push('/userDashboard'))
+                .catch(err => console.log(err))
     }
 
     const validateChange = e => {
