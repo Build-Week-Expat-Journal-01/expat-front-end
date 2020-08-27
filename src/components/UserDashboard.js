@@ -21,7 +21,7 @@ const UserDashboard = (props) => {
     }
 
     const addStory = () => {
-        push('/addStory')
+        push('/postStory')
     }
 
     return(
