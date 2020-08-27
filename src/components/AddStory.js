@@ -91,13 +91,13 @@ const AddStory = (props) => {
                     
                     <Col lg="12">
                     
-                        <FormGroup onSubmit={formSubmit}>
-                            <label htmlFor="uploadPic">
+                        <FormGroup >
+                            {/* <label htmlFor="uploadPic">
                                 Please input image location: 
                             <br/>
                             <Input type="text" name="image_url" onChange={photoChange}/>
                     {/* <button onClick="">UPLOAD</button>(This is a required field) */}
-                    <br/>
+                    {/* <br/>
                 </label>
                     <br/>
                     <label htmlFor="postText">
@@ -117,20 +117,19 @@ const AddStory = (props) => {
                     <br/>
                     <textarea id="caption" name='content' value={storyData.content} placeholder="Whats on your mind?" onChange={inputChange}/>
                 </label>
-                <button>Save</button>
-            </form>
-        </>
-                            <br/>
-                            </label>    
+                <button>Save</button> */}
+             
+        
+    
                     <Button color="danger" size="lg" block onClick={cancelEdit}>cancel </Button>
-                    <Button color="info" size="lg" block>Save</Button>
+                    <Button color="info" size="lg" block onClick={formSubmit}>Save</Button>
                         </FormGroup>
                     </Col>
                 
                 </Row>
             </div>
             
-            
+        
         </Container>
 
     )
