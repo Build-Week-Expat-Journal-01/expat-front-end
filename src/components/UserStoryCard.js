@@ -5,26 +5,21 @@ import {deletePost, editPost} from '../actions/index'
 
 const UserStoryCard = (props) => {
 
-    // const params = useParams();
     const {push} = useHistory();
-    // console.log('useParams in storyCard',params)
 
     const editFunc=(e) => {
         console.log('editfunc in userstoryCard', e)
         push(`postStory/${e.target.value}`)
     }
-    // id in param
+
     const deleteFunc = (e) => {
         console.log('deletefunc in userstorycard card id',e.target.value)
         props.deletePost(e.target.value)
-
     }
 
 
     return(
         <>
-
-            
             {props.posts.map(res => 
                         // console.log('posts map is userstoryCard', res)
                     <div key={res.title} value={res.id} style={{border:'1px solid black'}}>
@@ -37,7 +32,6 @@ const UserStoryCard = (props) => {
                         <button value={res.id}onClick={deleteFunc}>Delete</button>        
                     </div>        
                 )}
-            
         </>
     )
 }
