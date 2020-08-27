@@ -42,7 +42,7 @@ export const editPost = (id,updated) => {
         .catch(err => console.log('err in action add-', err))
     return{
         type:EDIT_POST,
-        payload:updated
+        payload:updated 
     }
 }
 
