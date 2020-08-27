@@ -26,7 +26,9 @@ const UserDashboard = (props) => {
 
     return(
         <Container>
-            <Row>
+
+            <div className="form-w-bckgimg">
+               <Row>
                 {/*extra Col tags for positioning*/}
                 <Col></Col>
                 <Col></Col>
@@ -34,11 +36,13 @@ const UserDashboard = (props) => {
                 <Col sm="12" lg="2">
                     <Button color="danger" onClick={logout}>Logout</Button>
                 </Col>
-            </Row>
-        
-        <h1>User DAAAAAAASH</h1>
-        <Button color="info" onClick={addStory}>Add Story</Button>
-        <UserStoryCard/>
+                </Row>
+                <h1>User DAAAAAAASH</h1>
+                <Button color="info" onClick={addStory}>Add Story</Button>
+                <UserStoryCard/> 
+            </div>
+
+            
         
         </Container>
     )
