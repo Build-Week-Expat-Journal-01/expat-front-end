@@ -43,6 +43,8 @@ const UserDashboard = (props) => {
                 </Row>
                 <h1>User Dashboard</h1>
                 <Button color="info" onClick={addStory}>Add Story</Button>
+                <br/>
+                <br/>
                 <UserStoryCard/> 
             </div>
 
