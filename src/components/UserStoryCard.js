@@ -6,19 +6,16 @@ import {Container, Row, Col, Button} from 'reactstrap';
 
 const UserStoryCard = (props) => {
 
-    // const params = useParams();
     const {push} = useHistory();
-    // console.log('useParams in storyCard',params)
 
     const editFunc=(e) => {
         console.log('editfunc in userstoryCard', e)
         push(`postStory/${e.target.value}`)
     }
-    // id in param
+
     const deleteFunc = (e) => {
         console.log('deletefunc in userstorycard card id',e.target.value)
         props.deletePost(e.target.value)
-
     }
 
 
@@ -27,7 +24,7 @@ const UserStoryCard = (props) => {
             <Row>
                 <Col>
                {props.posts.map(res => 
-                    <div style={{border:'3px groove black'},{backgroundColor:'darkgray'}}>
+                    <div key={res.title} value={res.id} style={{border:'3px groove black'},{backgroundColor:'darkgray'}}>
                     <h2>{res.title}</h2>
                     <h3>{res.content}</h3>
                     

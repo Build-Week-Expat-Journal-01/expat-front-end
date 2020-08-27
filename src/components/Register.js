@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import { useState, useEffect} from 'react';
 import { Alert, Container, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios'
+import AxiosWithAuth from '../utils/AxiosWithAuth'
+import {useHistory} from 'react-router-dom'
 
 const formSchema = yup.object().shape({
     username:yup.string().min(2).required('name'),
@@ -11,15 +13,12 @@ const formSchema = yup.object().shape({
 
 const Register = () => {
 
-
-
+    const {push} = useHistory()
     const [buttonDisabled, setButtonDisabled] = useState(true);
-
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     })
-
     const [errors, setErrors] = useState({
         username: "",
         password: ""
@@ -66,10 +65,7 @@ const Register = () => {
 
         axios   
         .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/register', formData)
-        .then(res => {
-            console.log(res)
-            
-        })
+        .then(res => localStorage.setItem('token',res.data.token),push('/userDashboard'))
         .catch(err => console.log(err))
 
     }
@@ -84,7 +80,7 @@ const Register = () => {
                     <Label htmlFor="username">
                             Username: 
                             <br/>
-                            <Input type="text" name='username' value={formData.name} onChange={handleChange}/>
+                            <Input type="text" name='username' value={formData.username} onChange={handleChange}/>
                             <br/>
                         </Label>
                         <br/>

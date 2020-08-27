@@ -6,31 +6,6 @@ import {editPost} from '../actions/index'
 
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 
-//1. pull data from server with current logged in user
-//2. Array of user post
-//3. Take specific post ID
-//4. change properties with in post.
-//WARNING: we have to check the array's size before sending back to server arr.length() must be maintained
-
-
-// const EditStory = () => {
-//     const params = useParams()
-//     console.log('paarams in edit', params)
-//     const [userData, setUserData] = useState([]);
-
-//     useEffect(() => {
-//         //pull userData here and save to state
-//     })
-
-
-//     return(
-//         <>
-//         </>
-//     )
-// }
-
-// export default EditStory
-
 const EditStory = (props) => {
     const {push,goBack} = useHistory()
     const params = useParams()
@@ -55,8 +30,6 @@ const EditStory = (props) => {
 
     },[])
 
-    // console.log('storyData', storyData)
-
     const inputChange =(e)=>{
         setStoryData({
             ...storyData,
@@ -80,9 +53,6 @@ const EditStory = (props) => {
         })
     }
 
-    
-    // console.log('params',props.posts.id)
-                    // id post obj,
     const formSubmit =(e)=>{
         e.preventDefault();
         props.editPost(params.id,storyData)

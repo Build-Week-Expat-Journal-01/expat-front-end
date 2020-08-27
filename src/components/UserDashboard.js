@@ -24,6 +24,10 @@ const UserDashboard = (props) => {
         push('/postStory')
     }
 
+    const homePage = () => {
+        
+    }
+
     return(
         <Container>
 

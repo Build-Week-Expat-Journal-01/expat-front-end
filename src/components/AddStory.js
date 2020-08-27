@@ -92,13 +92,13 @@ const AddStory = (props) => {
                     <Col lg="12">
                     
                         <FormGroup >
-                             <label htmlFor="uploadPic">
+                             <Label htmlFor="uploadPic">
                                 Please input image location: 
                             <br/>
                             <Input type="text" name="image_url" onChange={photoChange}/>
                      <button onClick="">UPLOAD</button>(This is a required field)
                      <br/>
-                </label>{/*
+                </Label>{/*
                     <br/>
                     <label htmlFor="postText">
                     Alt
@@ -128,10 +128,7 @@ const AddStory = (props) => {
                 
                 </Row>
             </div>
-            
-        
         </Container>
-
     )
 }
 
