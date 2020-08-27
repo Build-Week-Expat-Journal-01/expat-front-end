@@ -100,8 +100,8 @@ const AddStory = (props) => {
                     {/* <button onClick="">UPLOAD</button>(This is a required field) */}
                             <br/>
                             </label>    
-                    <Button size="lg" onClick={cancelEdit}>cancel </Button>
-                    <Button>Save</Button>
+                    <Button color="danger" size="lg" block onClick={cancelEdit}>cancel </Button>
+                    <Button color="info" size="lg" block>Save</Button>
                         </FormGroup>
                     </Col>
                 
