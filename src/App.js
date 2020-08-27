@@ -7,6 +7,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import UserDashboard from './components/UserDashboard'
 import AddStory from './components/AddStory';
 import Test from './components/Test'
+import EditStory from './components/EditStory'
 
 
 //shaq: Added <Route path='/addStory' component={AddStory}/> just for visualization of component
@@ -19,8 +20,9 @@ function App() {
       <Router>
         <Route exact path='/' component={Login}/>
         <Route exact path='/' component={Register}/>
-        <Route exact path='/' component={Test}/>
-        <PrivateRoute path='/addStory' component={AddStory}/>
+        {/* <Route exact path='/' component={Test}/> */}
+        <PrivateRoute exact path='/postStory' component={AddStory}/>
+        <PrivateRoute exact path='/postStory/:id' component={EditStory}/>
         <PrivateRoute exact path='/userDashboard' component={UserDashboard}></PrivateRoute>
         
       </Router>

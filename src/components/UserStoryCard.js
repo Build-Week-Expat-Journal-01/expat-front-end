@@ -6,20 +6,18 @@ import {Container, Row, Col, Button} from 'reactstrap';
 
 const UserStoryCard = (props) => {
 
-    const params = useParams();
+    // const params = useParams();
     const {push} = useHistory();
+    // console.log('useParams in storyCard',params)
 
-    // console.log('params',props.posts.id)
-                    // id post obj,
     const editFunc=(e) => {
-        props.editPost()
         console.log('editfunc in userstoryCard', e)
-        push(`addStory/${e.target.id}`)
+        push(`postStory/${e.target.value}`)
     }
     // id in param
     const deleteFunc = (e) => {
-        console.log('deletefunc in userstorycard',e)
-        props.deletePost()
+        console.log('deletefunc in userstorycard card id',e.target.value)
+        props.deletePost(e.target.value)
 
     }
 
@@ -31,12 +29,12 @@ const UserStoryCard = (props) => {
                {props.posts.map(res => 
                     <div style={{border:'1px solid black'}}>
                     {res.photos.map(pic => 
-                    <img src={pic.image_url} key={pic.id} alt={pic.desc}/>   
+                    <img src={pic.image_url} key={pic.id} value={pic.id} alt={pic.desc}/>   
                 )}
                         <h2>{res.title}</h2>
                         <h3>{res.content}</h3>
-                        <Button onClick={editFunc}>edit story</Button>
-                        <Button color="danger" onClick={deleteFunc}>Delete</Button>        
+                        <button value={res.id} onClick={editFunc}>edit story</button>
+                        <button value={res.id}onClick={deleteFunc}>Delete</button>        
                     </div>        
                 )} 
                 </Col>
