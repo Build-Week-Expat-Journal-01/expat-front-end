@@ -33,8 +33,8 @@ const UserStoryCard = (props) => {
                 )}
                         <h2>{res.title}</h2>
                         <h3>{res.content}</h3>
-                        <button value={res.id} onClick={editFunc}>edit story</button>
-                        <button value={res.id}onClick={deleteFunc}>Delete</button>        
+                        <Button value={res.id} onClick={editFunc}>edit story</Button>
+                        <Button color="danger" value={res.id}onClick={deleteFunc}>Delete</Button>        
                     </div>        
                 )} 
                 </Col>
