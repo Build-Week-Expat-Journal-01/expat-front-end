@@ -24,7 +24,7 @@ const UserStoryCard = (props) => {
             <Row>
                 <Col>
                {props.posts.map(res => 
-                    <Col key={res.title} value={res.id} style={{backgroundColor:'darkgray'}}>
+                    <Col key={res.title} value={res.id} style={{backgroundColor:'darkgray'},{paddingTop:'1.5rem'}}>
                     <Alert color="warning" style={{textDecoration:'underline'}}>{res.title}</Alert>
                     
                     {res.photos.map(pic => 
@@ -35,8 +35,8 @@ const UserStoryCard = (props) => {
                     <hr/>
                     <Alert color="dark">{res.content}</Alert>
                         
-                        <Button value={res.id} onClick={editFunc}>edit story</Button>
-                        <Button color="danger" value={res.id}onClick={deleteFunc}>Delete</Button>        
+                        <Button value={res.id} onClick={editFunc}>Edit Story</Button>
+                        <Button color="danger" value={res.id}onClick={deleteFunc}>DELETE</Button>        
                     </Col>        
                 )} 
                 </Col>
