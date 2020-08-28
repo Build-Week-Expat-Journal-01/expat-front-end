@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import {useHistory,useParams} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {deletePost, editPost} from '../actions/index'
-import {Container, Row, Col, Button} from 'reactstrap';
+import {Container, Row, Col, Button, Alert} from 'reactstrap';
 
 const UserStoryCard = (props) => {
 
@@ -24,21 +24,20 @@ const UserStoryCard = (props) => {
             <Row>
                 <Col>
                {props.posts.map(res => 
-                    <div key={res.title} value={res.id} style={{border:'3px groove black'},{backgroundColor:'darkgray'}}>
-                    <h2>{res.title}</h2>
-                    
+                    <Col key={res.title} value={res.id} style={{backgroundColor:'darkgray'}}>
+                    <Alert color="warning" style={{textDecoration:'underline'}}>{res.title}</Alert>
                     
                     {res.photos.map(pic => 
-                    <img src={pic.image_url} key={pic.id} value={pic.id} alt={pic.desc} style={{width: '75%'}}/>
+                    <img src={pic.image_url} key={pic.id} value={pic.id} alt={pic.desc} style={{width: '100%'}}/>
                     
 
                 )}
-                    <h3>{res.content}</h3>
-                    <br/>
+                    <hr/>
+                    <Alert color="dark">{res.content}</Alert>
                         
                         <Button value={res.id} onClick={editFunc}>edit story</Button>
                         <Button color="danger" value={res.id}onClick={deleteFunc}>Delete</Button>        
-                    </div>        
+                    </Col>        
                 )} 
                 </Col>
             </Row>

@@ -39,6 +39,7 @@ const UserDashboard = (props) => {
                 <Col></Col>
                 <Col sm="12" lg="2">
                     <Button color="danger" onClick={logout}>Logout</Button>
+                    <a href="https://frosty-sinoussi-0dec32.netlify.app/index.html"><Button color="info">Home</Button></a> 
                 </Col>
                 </Row>
                 <h1>User Dashboard</h1>
