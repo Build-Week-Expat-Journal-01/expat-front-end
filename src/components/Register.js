@@ -4,7 +4,7 @@ import { useState, useEffect} from 'react';
 import { Alert, Container, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
-import {useHistory} from 'react-router-dom'
+import {useHistory,Redirect} from 'react-router-dom'
 
 const formSchema = yup.object().shape({
     username:yup.string().min(2).required('name'),
@@ -13,7 +13,8 @@ const formSchema = yup.object().shape({
 
 const Register = () => {
 
-    const {push} = useHistory()
+    const [isSuccess,setIsSuccess] = useState(false)
+    // const {push} = useHistory()
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [formData, setFormData] = useState({
         username: "",
@@ -30,7 +31,7 @@ const Register = () => {
         })
     }, [formData])
 
-    console.log(formData)
+    // console.log(formData)
 
     const handleChange = e => {
         e.persist();
@@ -61,17 +62,16 @@ const Register = () => {
     }
 
     const submitReg = (e) => {
-        e.preventDefault()
-
         axios   
         .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/register', formData)
-        .then(res => localStorage.setItem('token',res.data.token),push('/userDashboard'))
+        .then(res => console.log(res))
         .catch(err => console.log(err))
 
     }
 
     return(
         <Container>
+            {isSuccess && <Redirect to ='/userDashboard'/>}
             <Row>
             <Col sm="12" lg={{ size: 6, offset: 5 }}>
                 <div className="form-w-bckgimg">

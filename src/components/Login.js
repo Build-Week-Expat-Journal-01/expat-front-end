@@ -1,7 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
 import { useState, useEffect } from 'react';
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 import {Container, Row, Col, FormGroup, Label, Input, Button} from 'reactstrap';
 import axios from 'axios';
 
@@ -13,13 +13,15 @@ const formSchema = yup.object().shape({
 
 const Login = () => {
 
+    const [isPost, setIsPost] = useState(false)
+
     const {push} = useHistory()
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     });
-    const [post, setPost] = useState([]);
+    // const [post, setPost] = useState([]);
     const [errors, setErrors] = useState({
         username: "",
         password: ""
@@ -30,6 +32,7 @@ const Login = () => {
             setButtonDisabled(!valid)
         })
     }, [formData])
+    
 
     const inputChange = e => {
         e.persist();
@@ -37,9 +40,8 @@ const Login = () => {
             ...formData,
             [e.target.name]: e.target.value
         };
-        
         validateChange(e);
-        console.log(newFormData);
+        // console.log(newFormData);
         setFormData(newFormData);
     }
 
@@ -47,7 +49,8 @@ const Login = () => {
             e.preventDefault();
             axios
                 .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/login', formData)
-                .then(res => localStorage.setItem('token',res.data.token),push('/userDashboard'))
+                .then(res => localStorage.setItem('token',res.data.token),
+                    setIsPost(true))
                 .catch(err => console.log(err))
     }
 
@@ -74,6 +77,7 @@ const Login = () => {
 
     return(
         <Container>
+            {isPost && <Redirect to='/userDashboard'/>}
             <Row>
                 <Col sm="12" lg={{ size: 6, offset: 5 }}>
                 <div className="form-w-bckgimg">
