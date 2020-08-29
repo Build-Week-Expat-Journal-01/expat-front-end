@@ -68,9 +68,11 @@ export const rootReducer = ( state = initialState, action) => {
             }
 
         case EDIT_POST:
-            console.log('action.payload - EDIT_POST reducer', action.payload)
+            console.log('action.payload - EDIT_POST reducer', action.payload.data)
+            console.log('state.posts', state.posts)
             return{
-                ...state
+                ...state,
+                posts:[ ...state.posts, state.posts.map(story => story.id === action.payload.id && action.payload)]
             }
 
         case DELETE_POST:

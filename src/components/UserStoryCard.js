@@ -10,7 +10,7 @@ const UserStoryCard = (props) => {
 
     const editFunc=(e) => {
         console.log('editfunc in userstoryCard', e)
-        push(`postStory/${e.target.value}`)
+        push(`editStory/${e.target.value}`)
     }
 
     const deleteFunc = (e) => {

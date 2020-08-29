@@ -22,7 +22,7 @@ function App() {
         <Route exact path='/' component={Register}/>
         {/* <Route exact path='/' component={Test}/> */}
         <PrivateRoute exact path='/postStory' component={AddStory}/>
-        <PrivateRoute exact path='/postStory/:id' component={EditStory}/>
+        <PrivateRoute exact path='/editStory/:id' component={EditStory}/>
         <PrivateRoute exact path='/userDashboard' component={UserDashboard}></PrivateRoute>
         
       </Router>
