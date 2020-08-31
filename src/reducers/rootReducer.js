@@ -2,8 +2,8 @@ import React from 'react'
 import {ADD_POST, DELETE_POST,EDIT_POST,FETCHING_START,FETCHING_SUCCESS,FETCHING_FAIL} from '../actions'
 
 const initialState = {
-    isFetching:false,
-    fetchingErr:'',
+    // isFetching:false,
+    // fetchingErr:'',
     posts:[
         // {   id:1,
         //     photos:[
@@ -37,8 +37,8 @@ export const rootReducer = ( state = initialState, action) => {
         case FETCHING_START:
             return{
                 ...state,
-                isFetching:true,
-                fetchingErr:''
+                // isFetching:true,
+                // fetchingErr:''
             }
         
         case FETCHING_SUCCESS:
@@ -46,15 +46,15 @@ export const rootReducer = ( state = initialState, action) => {
             return{
                 ...state,
                 posts:action.payload,
-                isFetching:false,
-                fetchingErr:''
+                // isFetching:false,
+                // fetchingErr:''
             }
 
         case FETCHING_FAIL:
             return{
                 ...state,
-                isFetching:false,
-                fetchingErr:'Fetching error'
+                // isFetching:false,
+                // fetchingErr:'Fetching error'
             }
 
         case ADD_POST:
@@ -68,11 +68,11 @@ export const rootReducer = ( state = initialState, action) => {
             }
 
         case EDIT_POST:
-            console.log('action.payload - EDIT_POST reducer', action.payload.data)
+            console.log('action.payload - EDIT_POST reducer', action.payload)
             console.log('state.posts', state.posts)
             return{
-                ...state,
-                posts:[ ...state.posts, state.posts.map(story => story.id === action.payload.id && action.payload)]
+                ...state
+                // posts:[ ...state.posts, state.posts.map(story => story.id === action.payload.id ? action.payload:story)]
             }
 
         case DELETE_POST:
