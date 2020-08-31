@@ -46,7 +46,7 @@ const Login = () => {
     }
 
         const formSubmit = e => {
-            e.preventDefault();
+            // e.preventDefault();
             axios
                 .post('https://build-week-expat-journal-1.herokuapp.com/api/auth/login', formData)
                 .then(res => localStorage.setItem('token',res.data.token),
