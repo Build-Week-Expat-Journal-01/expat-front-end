@@ -71,8 +71,8 @@ export const rootReducer = ( state = initialState, action) => {
             console.log('action.payload - EDIT_POST reducer', action.payload)
             console.log('state.posts', state.posts)
             return{
-                ...state
-                // posts:[ ...state.posts, state.posts.map(story => story.id === action.payload.id ? action.payload:story)]
+                ...state,
+                posts: state.posts.map(story => story.id === action.payload.id ? action.payload:story)
             }
 
         case DELETE_POST:
