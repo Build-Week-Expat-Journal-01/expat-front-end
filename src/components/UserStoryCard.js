@@ -18,7 +18,7 @@ const UserStoryCard = (props) => {
         props.deletePost(e.target.value)
     }
 
-    console.log('props', props.posts)
+    console.log('props in userStoryCard', props.posts)
     return(
         <Container>
             <Row>
